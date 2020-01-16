@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Firebase Profile</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+    <div class="main">
+
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" id="signup-form" class="signup-form">
+                        <h2 class="form-title">Profile Data</h2>
+                        <div class="form-group">
+                            <label id="name" class="name">Name :</label>
+                            
+                        </div>
+                
+                        <div class="form-group">
+                            <label id="zipcode" class="zipcode">ZipCode :</label>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label id="phone" class="phone">Phone :</label>
+                        </div>    
+            
+                            
+                        
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+     <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBrJEd81soaK20fbKmrun_aToGvZXRz9BU",
+      authDomain: "signup-project-84695.firebaseapp.com",
+      databaseURL: "https://signup-project-84695.firebaseio.com",
+      projectId: "signup-project-84695",
+      storageBucket: "signup-project-84695.appspot.com",
+      messagingSenderId: "139286166944",
+      appId: "1:139286166944:web:16d68de104ec382a1b38c5",
+      measurementId: "G-TSZWF8YNGJ"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
+  <script type="text/javascript">
+     var userId=localStorage.getItem('id');
+     firebase.database().ref('Messages/'+userId).once('value').then(function(snapshot){
+        var name=(snapshot.val() && snapshot.val().name);
+        var zipcode=(snapshot.val() && snapshot.val().zipcode);
+        var phone=(snapshot.val() && snapshot.val().phone);
+
+        document.getElementById('name').innerHTML=name;
+        document.getElementById('zipcode').innerHTML=zipcode;
+        document.getElementById('phone').innerHTML=phone;
+     });
+  </script>
+
+    <!-- JS -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="js/mainprofile.js"></script>
+
+</body>
+</html>
